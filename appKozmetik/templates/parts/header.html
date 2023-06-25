@@ -1,0 +1,54 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><span style="color: #ffb700;">Neos</span><span style="color: white;">Kozmetik</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Anasayfa</a>
+          </li>
+          <div class="dropdown">
+            <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Kategoriler
+            </button>
+            <ul class="dropdown-menu">    
+              {% for i in categori %}                    
+              <li><a class="dropdown-item" href="/kategori/{{i.id}}/">{{i.title}}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </ul>
+      </div>
+
+      <form class="me-5 d-flex" role="search" action="{% url 'Anasayfa' %}" method="GET">
+        <input class="form-control me-2" name="q" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-light" type="submit">Search</button>
+      </form>
+      
+      {% if request.user.is_authenticated %}
+      
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        {{request.user}}
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="/profil/">Profil</a></li>
+        <li><a class="dropdown-item" href="/cikis/">Çıkış Yap</a></li>
+      </ul>
+    </div>
+   
+    {% else %}
+    
+      <a href="kaydol/">
+      <button type="button" class="btn" id="kayıtol-btn"><i class="fa-solid fa-arrow-right-to-bracket fa-lg" style="color: #ffffff;"></i>
+      Kaydol
+    </button>
+        
+      </a>
+  {% endif %}
+    </div>
+</nav>

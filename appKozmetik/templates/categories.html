@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block body %}
+
+
+    <div class="mt-5 container">
+      <div class="row mx-auto">
+        {% for i in product  %}        
+        <div class="col-4 m-auto">
+          <div class="card" style="width: 18rem;">
+              <img src="{{i.product_img.url}}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{i.title}}</h5>
+                <p class="card-text">{{i.product_detail}}</p>
+                <span class="card-text">{{i.product_price}}</span>
+                <a href="/detay/{{i.id}}/" class="btn btn-primary">Detay</a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+      </div>
+        
+                      
+ 
+            
+    </div>
+    
+{% endblock body %}

@@ -1,0 +1,111 @@
+{% load static %}
+
+{% extends 'base.html' %}
+
+{% block body %}
+  
+
+    <section class="mt-5" style="background-color: #eee;">
+  
+      
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="card mb-4">
+                <div class="card-body text-center">
+                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                    class="rounded-circle img-fluid" style="width: 150px;">
+                  <h5 class="my-3">John Smith</h5>
+                  <p class="text-muted mb-1">Full Stack Developer</p>
+                  <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+                  <div class="d-flex justify-content-center mb-2">
+                    <button type="button" class="btn btn-primary">Follow</button>
+                    <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+                  </div>
+                </div>
+              </div>
+        
+            </div>
+            <div class="col-lg-8">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div class="row">
+                    <form action="" method="POST">
+                      {% csrf_token %}
+                    <div class="col-sm-1">
+                    <label for="">Kullanıcı Adı:</label>
+                    </div>
+                    <div class="col-sm-11">
+                      <input class='w-100'type="text" value="{{request.user.username}}" name="username">
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-1">
+                      <label for="">İsim:</label>
+                    </div>
+                    <div class="col-sm-11">
+                      <input class='w-100'type="text" value="{{request.user.first_name}}" name="first_name">
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-1">
+                      <label for="">Soyisim:</label>
+                    </div>
+                    <div class="col-sm-11">
+                      <input class='w-100'type="text" value="{{request.user.last_name}}" name="last_name">
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-1">
+                      <label for="">E-mail</label>
+                    </div>
+                    <div class="col-sm-11">
+                      <input class='w-100'type="email" value="{{request.user.email}}" name="email">
+                    </div>
+                  </div>
+                  <hr>
+                  <button type="submit" class="btn btn-info" style="color: white;" name="user">Değişiklikleri Kaydet</button>
+                </div>
+              </div>
+            </form>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card mb-4 mb-md-0">
+                    <div class="card-body">
+
+                        <h3>Ürün Ekle</h3>
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <label class="d-block" for="">Ürünün Adı:</label>
+                            <input class="mt-2" type="text" name="product_name">
+                            <label class="mt-2 d-block" for="">Ürünün Açıklaması:</label>
+                            <input class="mt-2" type="text" name="product_title" style="width: 100%; height:50px;">
+                            <label class="mt-2 d-block" for="">Ürünün fiyatı:</label>
+                            <input class="mt-2" type="number" name="product_price">
+                            <label class="mt-2 d-block" for="">Ürünün Kategorisi:</label>
+                            <select name="category" id="">
+                              {% for i in categories  %}
+                              <option value="{{ i.id }}">{{i.title}}</option>                                
+                              {% endfor %}
+                            </select>
+                            
+                            
+                            <label class="mt-2 d-block" for="">Ürünün Fotoğrafı:</label>
+                            <input class="mt-2" type="file" name="product_img">
+                              
+                            <button type="submit" class="mt-2 d-block btn btn-info" name="product">kaydet</button>
+                        </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+
+
+{% endblock body %}
